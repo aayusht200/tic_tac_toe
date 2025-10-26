@@ -19,6 +19,7 @@ function winCondition(board) {
 }
 let board = [null, null, null, null, null, null, null, null, null];
 let temp = 0;
+let score = { playerOne: 0, playerTwo: 0 };
 
 function game(id) {
   if (temp % 2 == 0) {
@@ -35,11 +36,13 @@ function game(id) {
   if (temp > 4) {
     let check = winCondition(board);
     if (check == "X") {
-      alert("X");
+      score.playerOne++;
+      playerOne_score.textContent = score.playerOne;
       board = [null, null, null, null, null, null, null, null, null];
       temp = 0;
     } else if (check == "O") {
-      alert("O");
+      score.playerTwo++;
+      playerTwo_score.textContent = score.playerTwo;
       board = [null, null, null, null, null, null, null, null, null];
       temp = 0;
     } else if (temp === 9 && winCondition(board) == false) {
@@ -64,3 +67,33 @@ function createBoard() {
   }
 }
 createBoard();
+
+const control_area = document.getElementById("control_area");
+console.log(score);
+
+const new_game = document.createElement("button");
+const reset_score = document.createElement("button");
+const score_area = document.createElement("div");
+const playerOne_tag = document.createElement("p");
+const playerTwo_tag = document.createElement("p");
+const playerOne_score = document.createElement("p");
+const playerTwo_score = document.createElement("p");
+
+new_game.classList.add("button");
+reset_score.classList.add("button");
+
+new_game.textContent = "New Game";
+reset_score.textContent = "Reset Score";
+score_area.classList.add("score_area");
+playerOne_tag.textContent = "Player One";
+playerTwo_tag.textContent = "Player Two";
+playerOne_score.textContent = 0;
+playerTwo_score.textContent = 0;
+score_area.append(
+  playerOne_tag,
+  playerTwo_tag,
+  playerOne_score,
+  playerTwo_score
+);
+
+control_area.append(new_game, reset_score, score_area);

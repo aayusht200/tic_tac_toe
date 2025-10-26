@@ -12,7 +12,14 @@ body {
   display: grid;
   align-items: center;
 }
-button {
+.container {
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 1rem;
+}
+#button_grid button {
   height: 100px;
   width: 100px;
 }
@@ -21,4 +28,20 @@ button {
   grid-template-columns: repeat(3, auto);
   grid-template-rows: repeat(3, auto);
   justify-content: center;
+}
+
+button {
+  padding: 1rem;
+}
+
+#control_area {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.score_area {
+  grid-column: span 2;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border: 1px solid;
+  text-align: center;
 }
