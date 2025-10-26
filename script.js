@@ -24,12 +24,18 @@ let score = { playerOne: 0, playerTwo: 0 };
 function game(id) {
   if (temp % 2 == 0) {
     if (board[id] == null) {
+      current_player.textContent = "Next Player: O";
       board[id] = "X";
+      const buttons = document.querySelectorAll("#button_grid button");
+      buttons[id].textContent = board[id];
       temp++;
     }
   } else {
     if (board[id] == null) {
+      current_player.textContent = "Next Player: X";
       board[id] = "O";
+      const buttons = document.querySelectorAll("#button_grid button");
+      buttons[id].textContent = board[id];
       temp++;
     }
   }
@@ -38,17 +44,14 @@ function game(id) {
     if (check == "X") {
       score.playerOne++;
       playerOne_score.textContent = score.playerOne;
-      board = [null, null, null, null, null, null, null, null, null];
-      temp = 0;
+      clear_board();
     } else if (check == "O") {
       score.playerTwo++;
       playerTwo_score.textContent = score.playerTwo;
-      board = [null, null, null, null, null, null, null, null, null];
-      temp = 0;
+      clear_board();
     } else if (temp === 9 && winCondition(board) == false) {
       alert("Draw");
-      board = [null, null, null, null, null, null, null, null, null];
-      temp = 0;
+      clear_board();
     }
   }
   console.log(board);
@@ -69,20 +72,20 @@ function createBoard() {
 createBoard();
 
 const control_area = document.getElementById("control_area");
-console.log(score);
+const current_player = document.getElementById("current_player");
+const current = document.getElementById("current");
+current.appendChild(current_player);
 
-const new_game = document.createElement("button");
 const reset_score = document.createElement("button");
 const score_area = document.createElement("div");
 const playerOne_tag = document.createElement("p");
 const playerTwo_tag = document.createElement("p");
 const playerOne_score = document.createElement("p");
 const playerTwo_score = document.createElement("p");
+current_player.textContent = "Next Player: X";
 
-new_game.classList.add("button");
 reset_score.classList.add("button");
 
-new_game.textContent = "New Game";
 reset_score.textContent = "Reset Score";
 score_area.classList.add("score_area");
 playerOne_tag.textContent = "Player One";
@@ -96,4 +99,19 @@ score_area.append(
   playerTwo_score
 );
 
-control_area.append(new_game, reset_score, score_area);
+control_area.append(reset_score, score_area);
+reset_score.addEventListener("click", (e) => {
+  clear_board();
+  score.playerOne = 0;
+  score.playerTwo = 0;
+  playerOne_score.textContent = score.playerOne;
+  playerTwo_score.textContent = score.playerTwo;
+});
+
+function clear_board() {
+  current_player.textContent = "Next Player: X";
+  board = [null, null, null, null, null, null, null, null, null];
+  temp = 0;
+  const buttons = document.querySelectorAll("#button_grid button");
+  buttons.forEach((btn) => (btn.textContent = ""));
+}
