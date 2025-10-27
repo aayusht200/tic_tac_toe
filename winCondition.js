@@ -10,10 +10,15 @@ const winPatterns = [
   [2, 4, 6],
 ];
 
-export function winCondition(arr) {
+export function winCondition(board) {
   for (let pattern of winPatterns) {
     const [a, b, c] = pattern;
-    if (arr[a] && arr[a] === arr[b] && arr[a] === arr[c]) return arr[a];
+    if (board[a] && board[a] === board[b] && board[a] === board[c])
+      return board[a];
   }
   return false;
+}
+export function isDraw(board) {
+  const draw = board.filter((element) => element === null);
+  return draw.length == 0;
 }
