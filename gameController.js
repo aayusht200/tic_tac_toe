@@ -31,6 +31,7 @@ export function gameController() {
     playRound,
     switchPlayer,
     getBoard: () => game.getBoard(),
+    resetBoard: () => game.reset(),
     getCurrentPlayer,
   };
 }

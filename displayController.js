@@ -41,7 +41,8 @@ export function displayController() {
     }
   }
   reset.addEventListener("click", (e) => {
-    console.log(game.getBoard());
+    game.resetBoard();
+    renderBoard();
   });
   return { renderBoard, createGrid };
 }
