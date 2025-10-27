@@ -5,8 +5,5 @@ export const players = (name, marker, score) => {
   function getMarker() {
     return marker;
   }
-  function getScore() {
-    return score;
-  }
   return { name, marker, score, getName, getMarker };
 };
