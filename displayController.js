@@ -3,7 +3,10 @@ import { gameBoard } from "./gameBoard.js";
 export function displayController() {
   const display = document.getElementById("display");
   const reset = document.getElementById("reset");
-  let score = "";
+  const playerOneScore = document.getElementById("playerOneScore");
+  const playerTwoScore = document.getElementById("playerTwoScore");
+  const score_area = document.getElementById("score_area");
+  let winner = "";
   const game = gameController();
   function createGrid() {
     for (let i = 0; i < 9; i++) {
@@ -12,9 +15,9 @@ export function displayController() {
       button_grid.appendChild(div);
       div.classList.add("play_button");
       div.addEventListener("click", (e) => {
-        score = game.playRound(i);
+        winner = game.playRound(i);
+        if (winner != "") displayArea(winner);
         renderBoard();
-        if (score != "") displayArea(score);
       });
     }
   }
@@ -25,12 +28,12 @@ export function displayController() {
       playbuttons[i].textContent = board[i] ? board[i] : "";
     }
   }
-  function displayArea(score) {
-    switch (score) {
-      case "playerOne":
+  function displayArea(winner) {
+    switch (winner) {
+      case "X":
         display.textContent = "Player One Wins";
         break;
-      case "playerTwo":
+      case "O":
         display.textContent = "Player Two Wins";
         break;
       case "Draw":

@@ -12,12 +12,10 @@ export function gameController() {
       game.setCell(index, currentPlayer.marker);
       let winner = winCondition(game.getBoard());
       if (winner) {
-        game.reset();
-        currentPlayer = playerOne;
-        return currentPlayer.getName();
+        resetBoard();
+        return winner;
       } else if (isDraw(game.getBoard())) {
-        game.reset();
-        currentPlayer = playerOne;
+        resetBoard();
         return "Draw";
       } else switchPlayer();
     }
@@ -28,15 +26,15 @@ export function gameController() {
   function getCurrentPlayer() {
     return currentPlayer;
   }
-
+  function resetBoard() {
+    currentPlayer = playerOne;
+    game.reset();
+  }
   return {
     playRound,
     switchPlayer,
     getBoard: () => game.getBoard(),
-    resetBoard: () => {
-      game.reset();
-      currentPlayer = playerOne;
-    },
+    resetBoard,
     getCurrentPlayer,
   };
 }

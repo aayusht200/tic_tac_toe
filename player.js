@@ -1,9 +1,12 @@
-export const players = (name, marker) => {
+export const players = (name, marker, score) => {
   function getName() {
     return name;
   }
   function getMarker() {
     return marker;
   }
-  return { name, marker, getName, getMarker };
+  function getScore() {
+    return score;
+  }
+  return { name, marker, score, getName, getMarker };
 };
