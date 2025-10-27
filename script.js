@@ -1,8 +1,10 @@
 import * as Condition from "./winCondition.js";
 import { gameBoard } from "./gameBoard.js";
 import { players } from "./player.js";
-let board = ["X", "X", "X", "X", "X", "X", "X", "X", "X"];
-let boardTwo = [null, null, null, null, null, null, null, null, null];
+import { gameController } from "./gameController.js";
+import { createBoard, displayController } from "./displayController.js";
 
-console.log(Condition.isDraw(board));
-console.log(Condition.isDraw(boardTwo));
+createBoard();
+let game = displayController();
+
+console.log(game.renderBoard());

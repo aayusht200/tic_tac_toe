@@ -1,6 +1,7 @@
 import { gameBoard } from "./gameBoard.js";
 import { players } from "./player.js";
 import { isDraw, winCondition } from "./winCondition.js";
+
 export function gameController() {
   const game = gameBoard();
   let playerOne = players("playerOne", "X");
@@ -22,5 +23,14 @@ export function gameController() {
   function switchPlayer() {
     currentPlayer = currentPlayer === playerOne ? playerTwo : playerOne;
   }
-  return { playRound, switchPlayer };
+  function getCurrentPlayer() {
+    return currentPlayer;
+  }
+
+  return {
+    playRound,
+    switchPlayer,
+    getBoard: () => game.getBoard(),
+    getCurrentPlayer,
+  };
 }
