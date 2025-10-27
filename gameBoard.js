@@ -4,7 +4,7 @@ export const gameBoard = () => {
   const setCell = (index, marker) => {
     if (board[index] == null) board[index] = marker;
   };
-  const reset = () =>
-    (board = [null, null, null, null, null, null, null, null, null]);
-  return { getBoard, setCell, reset };
+  const reset = () => (board = Array(9).fill(null));
+  const isEmpty = (index) => board[index] === null;
+  return { getBoard, setCell, reset, isEmpty };
 };
