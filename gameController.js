@@ -13,9 +13,11 @@ export function gameController() {
       let winner = winCondition(game.getBoard());
       if (winner) {
         game.reset();
+        currentPlayer = playerOne;
         return currentPlayer.getName();
       } else if (isDraw(game.getBoard())) {
         game.reset();
+        currentPlayer = playerOne;
         return "Draw";
       } else switchPlayer();
     }
@@ -31,7 +33,10 @@ export function gameController() {
     playRound,
     switchPlayer,
     getBoard: () => game.getBoard(),
-    resetBoard: () => game.reset(),
+    resetBoard: () => {
+      game.reset();
+      currentPlayer = playerOne;
+    },
     getCurrentPlayer,
   };
 }
