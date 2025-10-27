@@ -35,6 +35,7 @@ button {
   font-family: "Courier New", Courier, monospace;
   padding: 1rem;
   font-size: 1.2rem;
+  border-radius: 1rem;
 }
 #control_area {
   display: grid;
