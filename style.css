@@ -41,7 +41,6 @@ button {
   display: grid;
   grid-template-columns: 1fr;
   gap: 1rem;
-  
 }
 .score_area {
   grid-column: span 2;
@@ -49,14 +48,12 @@ button {
   grid-template-columns: 1fr 1fr;
   text-align: center;
 }
-#current {
-  display: flex;
-  justify-content: center;
+#header {
+  display: grid;
+  justify-items: center;
   font-size: 2rem;
 }
 
 #button_grid button {
   font-size: 3rem;
 }
-
-
